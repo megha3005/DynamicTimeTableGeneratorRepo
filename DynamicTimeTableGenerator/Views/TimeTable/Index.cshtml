@@ -1,0 +1,53 @@
+﻿
+ @model DynamicTimeTableGenerator.Models.TimeTableInputModel
+
+@{
+    ViewBag.Title = "TimeTable Input";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow rounded-4">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Generate Dynamic TimeTable</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Index" method="post" id="inputForm">
+                        <div class="mb-3">
+                            <label asp-for="WorkingDays" class="form-label">Working Days (1 - 7)</label>
+                            <input asp-for="WorkingDays" class="form-control" />
+                            <span asp-validation-for="WorkingDays" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="SubjectsPerDay" class="form-label">Subjects Per Day (Max 8)</label>
+                            <input asp-for="SubjectsPerDay" class="form-control" />
+                            <span asp-validation-for="SubjectsPerDay" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="TotalSubjects" class="form-label">Total Subjects</label>
+                            <input asp-for="TotalSubjects" class="form-control" />
+                            <span asp-validation-for="TotalSubjects" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Total Hours (Auto)</label>
+                            <input type="text" id="totalHours" class="form-control" readonly />
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary" id="submitBtn" disabled>Next</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/timetablevalidation.js"></script>
+}
